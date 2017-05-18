@@ -26,31 +26,11 @@ const app = express();
 const server = http.createServer(app);
 const env = app.get('env');
 
-// webpack dev config
-if (env === 'development') {
-  const webpack = require('webpack');
-  const webpackConf = require('./../webpack/webpack.dev.js');
-  const compiler = webpack(webpackConf);
-
-  app.use(
-    require('webpack-dev-middleware')(compiler, {
-      noInfo: false,
-      stats: {
-        colors: true,
-        timings: true,
-        chunks: false,
-      },
-    }),
-  );
-
-  app.use(require('webpack-hot-middleware')(compiler));
-
+if (env === 'development' || env === 'test') {
   // use dev error handler
   app.use(errorhandler());
-}
 
-// env specific config
-if (env === 'development' || env === 'test') {
+  // env specific config
   // dev logging to the console
   app.use(morgan('dev'));
 
