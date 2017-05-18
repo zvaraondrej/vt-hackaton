@@ -1,6 +1,8 @@
 @import "fonts";
 @import "~materialize-css/sass/materialize";
-@import "shared";
-@import "about.component";
-@import "num-display.component";
-@import "num-button.component";
+@import "~leaflet/dist/leaflet.css";
+
+body, html, #app, .leaflet-container{
+  width: 100%;
+  height: 100%;
+}

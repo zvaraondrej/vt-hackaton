@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import configure from './store/configure';
 
+import configure from './store/configure';
 import Home from './components/home/home.component';
 
 import './../sass/main.scss';
