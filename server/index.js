@@ -27,6 +27,23 @@ const server = http.createServer(app);
 const env = app.get('env');
 
 if (env === 'development' || env === 'test') {
+  const webpack = require('webpack');
+  const webpackConf = require('./../webpack/webpack.dev.js');
+  const compiler = webpack(webpackConf);
+
+  app.use(
+    require('webpack-dev-middleware')(compiler, {
+      noInfo: false,
+      stats: {
+        colors: true,
+        timings: true,
+        chunks: false,
+      },
+    }),
+  );
+
+  app.use(require('webpack-hot-middleware')(compiler));
+
   // use dev error handler
   app.use(errorhandler());
 
